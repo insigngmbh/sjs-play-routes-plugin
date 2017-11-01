@@ -1,0 +1,36 @@
+#
+# The routes for testing
+#
+
+# The simple / route
+GET         /                                   ch.insign.Blog.index()
+
+# A GET request with a path
+GET         /posts                              ch.insign.Blog.posts()
+
+# An argument
+GET         /default_param                      ch.insign.Blog.defaultParam(userId: Int ?= 1)
+
+# A POST request
+POST        /posts                              ch.insign.Blog.addPost()
+
+# A GET request with a parameter
+GET         /posts/:id                          ch.insign.Blog.post(id: Int)
+
+# A PUT request
+PUT         /posts/:id                          ch.insign.Blog.editPost(id: Int)
+
+# A DELETE request
+DELETE      /posts/:id                          ch.insign.Blog.deletePost(id: Int)
+
+# A GET request with a variable
+GET         /posts/$id/comments                 ch.insign.Blog.comments(id: Int)
+
+# A GET request with a fixed parameter
+GET         /albums                             ch.insign.Pages.page(page: String = "albums")
+
+# A GET request with a fixed parameter
+GET         /*page                              ch.insign.Pages.page(page: String)
+
+# A GET request with a regex
+#GET         /posts/$id<[0-9]+>                  ch.insign.Pages.regex(id: Int)
