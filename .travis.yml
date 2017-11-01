@@ -1,5 +1,23 @@
 language: scala
-
+sudo: false
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sbt"
+  - "$HOME/.ivy2"
+scala:
+- 2.10.6
+jdk:
+- oraclejdk7
+- oraclejdk8
+- openjdk7
 script:
-   - sbt scripted
-
+- sbt ++$TRAVIS_SCALA_VERSION test scripted
+after_success:
+- test "${TRAVIS_JDK_VERSION}" = 'oraclejdk8' &&
+  test ! -z "${TRAVIS_TAG}" &&
+  sbt ++$TRAVIS_SCALA_VERSION 'set version := System.getenv("TRAVIS_TAG")' publish
+env:
+  global:
+  - secure: FKWJNzhXfRURxKmrMu8bgXE9eH7UhpZ7cV1eWGNZ/66kt/kFrZ+sXFZLblUsLi4Jq8yPP+gF4ZQTZPkoppjW6LYFZppO22ykIxSFrds/y3uVCWrsgj+yNRK6IdkiLoiBBgVibCy45UYml8a9bWM05tHHavTE+bJMC3MgIsxIoWb6KX87+jUnONDl7A1w0yavvKwwoV1ilgbP3fhFIF8vgy+XGndihaTkJmEExXAnWfLRDnGLsWG6rfvqpfUerYO8GtQLzGvwMHk/r0PVcmj3hHZZI59p4KbhBEoVCVcZ6dBken4k7RvgkvEXVKbd5ibDMQnE2CqTCfkcCrGHi98th0+x/m2CSwsHSr2Ar8LXrB5m7TP/TKL1D7Q/Fx+ThUVUJnSCUjng+pyxqJoiORXlT3NXB8LETKyh1bxOLQtfS9153hhdO9l2W6qk3NRreLivudWpIFkbzqjvi2ML5FWVDfDTwkmnCukbiE61I3tC3ddZvf0rmU4OXhJAcdHKf2zwHdc03rT/AjXKKaS8NcebaS7GN+RO7ywgAmM2vwPPhVcmchSx87a4YFlNNs9QpotPjigbnja4IQex+//pHKY49f3z0EJMQfSuGl+o1rNtz/ts4IlGFUm9G0rHd/ZV6uhjEmsGfRFlwM3o15D0YtaStKO7RwkwJ5moX8HPTxcClSY=
+  - secure: R/KDT3ohpsGzupLx68oj5G3ZHYb+k1K78pjOv+lBa4Ud6RUsU+NHLbGP99Kd61NvyC4TCpxpD7jb7LQ9bvecLIfW7GO+RxuxaPtcVjN5qxflyqdcbP0KNTyIywvTUvmy9Pv5FnVf5MHnCNAa0uEMKsupRG8GMSAN7ZuvCjDDF49HmLNNGaNmcJ+/oLowcg/Yb9DRX/9rKMqYTQ4AQbVUshKKF7W50lKOb38XOtJVU+qFmE+xeBkU35zad5ZKEfeKYPzyRhN+9F5i0zlQsmFBLJvi+NXwqJolRTVWsvi9+eqVUiCA++hmQIhJpL2V681YhLI6vb1nlqzC/ZKwujhx9GHQFvgEZnMl9s/JSUhkozFRqY2gdWJDJn/geH11k8YxH6lPFz5mrH5gfFZ6dhDKjLxw1pDpE7hBne8iV6+1ofd+FS6WXTl4P5UzoTTNhG8njYUuBVhQJr31NwSYx/GvdUK89PJe+Z9UXjvB0iuP1pgQ7pFUfhiyLFRy41BGKfQnw0HaiEZuIZiC/aIsHwGT7XBnop5+3ycWhGKYLlxsp0RMzYyZxqLl8OAFJyvcPtmUMiM6TKYnaMXvBY6/jCiyG6RC4lraJNNyGRasFBYed+rzIg0WgSyt2U4XgD9HrdjWVJTSENKHzjYasfj++xZiqoyPrJiPSz92EPeu7Wfx0tI=
