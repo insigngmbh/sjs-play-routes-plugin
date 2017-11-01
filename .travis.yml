@@ -5,18 +5,16 @@ cache:
   - "$HOME/.m2/repository"
   - "$HOME/.sbt"
   - "$HOME/.ivy2"
-scala:
-- 2.10.6
 jdk:
 - oraclejdk7
 - oraclejdk8
 - openjdk7
 script:
-- sbt ++$TRAVIS_SCALA_VERSION test scripted
+- sbt test scripted
 after_success:
 - test "${TRAVIS_JDK_VERSION}" = 'oraclejdk8' &&
   test ! -z "${TRAVIS_TAG}" &&
-  sbt ++$TRAVIS_SCALA_VERSION 'set version := System.getenv("TRAVIS_TAG")' publish
+  sbt 'set version := System.getenv("TRAVIS_TAG")' publish
 env:
   global:
   - secure: FKWJNzhXfRURxKmrMu8bgXE9eH7UhpZ7cV1eWGNZ/66kt/kFrZ+sXFZLblUsLi4Jq8yPP+gF4ZQTZPkoppjW6LYFZppO22ykIxSFrds/y3uVCWrsgj+yNRK6IdkiLoiBBgVibCy45UYml8a9bWM05tHHavTE+bJMC3MgIsxIoWb6KX87+jUnONDl7A1w0yavvKwwoV1ilgbP3fhFIF8vgy+XGndihaTkJmEExXAnWfLRDnGLsWG6rfvqpfUerYO8GtQLzGvwMHk/r0PVcmj3hHZZI59p4KbhBEoVCVcZ6dBken4k7RvgkvEXVKbd5ibDMQnE2CqTCfkcCrGHi98th0+x/m2CSwsHSr2Ar8LXrB5m7TP/TKL1D7Q/Fx+ThUVUJnSCUjng+pyxqJoiORXlT3NXB8LETKyh1bxOLQtfS9153hhdO9l2W6qk3NRreLivudWpIFkbzqjvi2ML5FWVDfDTwkmnCukbiE61I3tC3ddZvf0rmU4OXhJAcdHKf2zwHdc03rT/AjXKKaS8NcebaS7GN+RO7ywgAmM2vwPPhVcmchSx87a4YFlNNs9QpotPjigbnja4IQex+//pHKY49f3z0EJMQfSuGl+o1rNtz/ts4IlGFUm9G0rHd/ZV6uhjEmsGfRFlwM3o15D0YtaStKO7RwkwJ5moX8HPTxcClSY=
