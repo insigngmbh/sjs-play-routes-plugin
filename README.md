@@ -114,8 +114,9 @@ As a HTTP client, [RösHTTP](https://github.com/hmil/RosHTTP) will be added to t
 
 ## Demo
 
-A full REST example (using JSON with [circe](https://circe.github.io/circe/)) can be found in the
-[demo project](https://github.com/insigngmbh/sjs-play-routes-demo/blob/master/client/src/main/scala/ch/insign/client/TodoClient.scala).
+A [full REST example](https://github.com/insigngmbh/sjs-play-routes-demo/blob/master/client/src/main/scala/ch/insign/client/TodoClient.scala)
+(using JSON with [circe](https://circe.github.io/circe/)) can be found in the
+[demo project](https://github.com/insigngmbh/sjs-play-routes-demo).
 
 ## Q & A
 
